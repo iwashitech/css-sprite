@@ -1,0 +1,31 @@
+:root {
+  --img-full-w: 400;
+  --img-full-h: 200;
+  --img-show-w: 200;
+  --img-show-h: 100;
+  --img-pos-x: 10;
+  --img-pos-y: 10;
+}
+
+/* .sprite のpadding-topの計算 */
+/* padding-top = sprite画像において表示させたい画像の高さ / sprite画像において表示させたい画像の幅 * 100(%) */
+.sprite {
+  padding-top: calc(var(--img-show-h) / var(--img-show-w) * 100%);
+}
+
+/* .sprite::afterのbackground-positionの計算 */
+.sprite::after {
+  /* sprite画像において表示させたい画像のx位置(px) / (sprite画像全体の幅 - sprite画像において表示させたい画像の幅) * 100(%) */
+  background-position-x: calc(var(--img-pos-x) / (var(--img-full-w) - var(--img-show-w)) * 100%);
+  /* sprite画像において表示させたい画像のy位置(px) / (sprite画像全体の高さ - sprite画像において表示させたい画像の高さ)  * 100(%) */
+  background-position-y: calc(var(--img-pos-y) / (var(--img-full-h) - var(--img-show-h)) * 100%);
+}
+
+/* .sprite::afterのbackground-sizeの計算 */
+.sprite::after {
+  background-size:
+    /* sprite画像全体の幅 / sprite画像において表示させたい画像の幅 * 100(%) */
+    calc(var(--img-full-w) / var(--img-show-w) * 100%)
+    /* sprite画像全体の高さ / sprite画像において表示させたい画像の高さ * 100(%) */
+    calc(var(--img-full-h) / var(--img-show-h) * 100%);
+}
